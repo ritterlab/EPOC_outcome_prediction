@@ -1,4 +1,5 @@
 from imblearn.pipeline import Pipeline
+from src.configs import configs
 
 from sklearn.feature_selection import VarianceThreshold
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
@@ -186,14 +187,16 @@ class Config:
     '''
 
     H5_FILES = [
-        '/ritter/share/data/EPOC/h5_files/sex_OUTResponse.h5',
-        '/ritter/share/data/EPOC/h5_files/TAB_OUTResponse.h5',
-        '/ritter/share/data/EPOC/h5_files/TAB_noclin_OUTResponse.h5',
-        '/ritter/share/data/EPOC/h5_files/graph_fMRI_OUTResponse.h5',
-        '/ritter/share/data/EPOC/h5_files/MRI_OUTResponse.h5',
-        '/ritter/share/data/EPOC/h5_files/fMRI_OUTResponse.h5'
-        '/ritter/share/data/EPOC/h5_files/TABnoclin_sMRI_OUTResponse.h5'
+        '%s/EPOC/h5_files/sex_OUTResponse.h5'  % configs.PROJECT_ROOT,
+        '%s/EPOC/h5_files/TAB_OUTResponse.h5' % configs.PROJECT_ROOT,
+        '%s/EPOC/h5_files/TAB_noclin_OUTResponse.h5' % configs.PROJECT_ROOT,
+        '%s/EPOC/h5_files/graph_fMRI_OUTResponse.h5' % configs.PROJECT_ROOT,
+        '%s/EPOC/h5_files/MRI_OUTResponse.h5' % configs.PROJECT_ROOT,
+        '%s/EPOC/h5_files/fMRI_OUTResponse.h5' % configs.PROJECT_ROOT,
+        '%s/EPOC/h5_files/TABnoclin_sMRI_OUTResponse.h5' % configs.PROJECT_ROOT
     ]
+
+    OUTPUT_BASE_PATH = '%s/results/' % configs.PROJECT_ROOT
     
     
     ANALYSIS = {

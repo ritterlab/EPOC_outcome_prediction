@@ -1,4 +1,5 @@
 from imblearn.pipeline import Pipeline
+from src.configs import configs
 
 from sklearn.feature_selection import VarianceThreshold
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
@@ -21,7 +22,7 @@ Classification_model_settings = [
             ("scale", StandardScaler()),
             ("model_LR(c)", LogisticRegression(max_iter=1000))
         ]),
-        {"model_LR(c)__C" : [10000, 1000, 100, 1.0, 0.001, 0.0001]}, #10000, 1000, 100, 1.0, 0.001, 0.0001
+        {"model_LR(c)__C" : [10000, 1000, 100, 1.0, 0.001, 0.0001]}, 
     ),
      #(pipeline, grid) for linear SVM classifier
     (
@@ -30,7 +31,7 @@ Classification_model_settings = [
             ("scale", StandardScaler()),
             ("model_SVM-lin", SVC(kernel="linear", max_iter=10000, probability=True))
         ]),
-        {"model_SVM-lin__C" : [10000, 1000, 100, 1.0, 0.001, 0.0001]},     #10000, 1000, 100, 1.0, 0.001, 0.0001
+        {"model_SVM-lin__C" : [10000, 1000, 100, 1.0, 0.001, 0.0001]},     
     ),
     # (pipeline, grid) for SVM classifier with rbf kernel
     (
@@ -39,7 +40,7 @@ Classification_model_settings = [
             ("scale", StandardScaler()),
             ("model_SVM-rbf", SVC(kernel="rbf", probability=True))
         ]),
-        {"model_SVM-rbf__C" : [10000, 1000, 100, 1.0, 0.001, 0.0001], #10000, 1000, 100, 1.0, 0.001, 0.0001
+        {"model_SVM-rbf__C" : [10000, 1000, 100, 1.0, 0.001, 0.0001],
          "model_SVM-rbf__gamma" : ['scale', 'auto']}
     ),
     # (pipeline, grid) for GradientBoosting classifier
@@ -50,7 +51,7 @@ Classification_model_settings = [
             ("model_GB", XGBClassifier(n_estimators=100, max_depth=5, subsample=1.0, 
                                            use_label_encoder=True,  eval_metric='logloss'))
        ]),
-        {"model_GB__learning_rate" : [0.01, 0.05, 0.1, 0.25]} #0.01, 0.05, 0.1, 0.25
+        {"model_GB__learning_rate" : [0.01, 0.05, 0.1, 0.25]} 
     )
 ]
 
@@ -185,21 +186,28 @@ class Config:
     # CONFIG ends  ################################################################################################
     '''
 
-    H5_FILES = [
-        '/ritter/share/data/EPOC/h5_files/fMRI_OUTResponse.h5',
+    H5_FILES = [ 
+        '%s/EPOC/h5_files/TAB_OUTRemission_CONFSSex.h5' % configs.PROJECT_ROOT,
+        '%s/EPOC/h5_files/TAB_noclin_OUTRemission_CONFSSex.h5' % configs.PROJECT_ROOT,
+        '%s/EPOC/h5_files/graph_fMRI_OUTRemission_CONFSSex.h5' % configs.PROJECT_ROOT,
+        '%s/EPOC/h5_files/MRI_OUTRemission_CONFSSex.h5' % configs.PROJECT_ROOT,
+        '%s/EPOC/h5_files/fMRI_OUTRemission_CONFSSex.h5' % configs.PROJECT_ROOT,
+        '%s/EPOC/h5_files/TABnoclin_sMRI_OUTRemission_CONFSSex.h5' % configs.PROJECT_ROOT
     ]
+
+    OUTPUT_BASE_PATH = '%s/results/' % configs.PROJECT_ROOT
     
     
     ANALYSIS = {
         # classification case
         'classification_baseline' : dict(
-            LABEL = 'Response',
+            LABEL = 'Remission',
             TASK_TYPE='classification',
             METRICS='balanced_accuracy',
             MODEL_PIPEGRIDS = Classification_model_settings,
-            RUN_CONFS = False,
-            CONF_CTRL_TECHS = ['baseline'], #baseline
-            CONFS = [''],
+            RUN_CONFS = True,
+            CONF_CTRL_TECHS = ['cb'], #baseline
+            CONFS = ['Geschlecht'],
         ),
                 
     }
@@ -209,11 +217,11 @@ class Config:
     N_REPEATS = 10 #edit Marija
     N_INNER_CV = 5
     N_OUTER_CV = 7
-    N_PERMUTATIONS = 1000 #1000
+    N_PERMUTATIONS = 1000
     PERMUTE_ONLY_XY = False
     N_JOBS = 10
     PARALLELIZE = True
     SAVE_MODELS = False
     FILLED_MISSING = True #edit Marija
-    PCA = True #edit Marija
-    N_COMPONENTS = 10 # edit Marija
+    PCA = False #edit Marija
+    N_COMPONENTS = None # edit Marija

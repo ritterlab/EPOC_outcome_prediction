@@ -1,4 +1,5 @@
 from imblearn.pipeline import Pipeline
+from src.configs import configs
 
 from sklearn.feature_selection import VarianceThreshold
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
@@ -185,21 +186,17 @@ class Config:
     # CONFIG ends  ################################################################################################
     '''
 
-    H5_FILES = [ 
-        '/ritter/share/data/EPOC/h5_files/TAB_OUTRemission_CONFSSex.h5',
-        '/ritter/share/data/EPOC/h5_files/TAB_noclin_OUTRemission_CONFSSex.h5',
-        '/ritter/share/data/EPOC/h5_files/graph_fMRI_OUTRemission_CONFSSex.h5',
-        '/ritter/share/data/EPOC/h5_files/MRI_OUTRemission_CONFSSex.h5',
-        '/ritter/share/data/EPOC/h5_files/fMRI_OUTRemission_CONFSSex.h5',
-        '/ritter/share/data/EPOC/h5_files/TABnoclin_sMRI_OUTRemission_CONFSSex.h5'
-
+    H5_FILES = [
+        ('%s/EPOC/h5_files/fMRI_OUTRemission_CONFSSex.h5' % configs.PROJECT_ROOT),
     ]
+
+    OUTPUT_BASE_PATH = '%s/results/' % configs.PROJECT_ROOT
     
     
     ANALYSIS = {
         # classification case
         'classification_baseline' : dict(
-            LABEL = 'Remission',
+            LABEL = 'Response',
             TASK_TYPE='classification',
             METRICS='balanced_accuracy',
             MODEL_PIPEGRIDS = Classification_model_settings,
@@ -221,5 +218,5 @@ class Config:
     PARALLELIZE = True
     SAVE_MODELS = False
     FILLED_MISSING = True #edit Marija
-    PCA = False #edit Marija
-    N_COMPONENTS = None # edit Marija
+    PCA = True #edit Marija
+    N_COMPONENTS = 10 # edit Marija
