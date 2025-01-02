@@ -1,0 +1,135 @@
+{
+    "halfpipe_version": "1.2.2.post1.dev404+gaa1e0b5",
+    "schema_version": "3.0",
+    "timestamp": "2023-04-10_17-43",
+    "global_settings": {
+        "dummy_scans": 0,
+        "slice_timing": false,
+        "use_bbr": null,
+        "skull_strip_algorithm": "ants",
+        "run_mriqc": false,
+        "run_fmriprep": true,
+        "run_halfpipe": true,
+        "fd_thres": 0.5,
+        "anat_only": false,
+        "write_graph": false,
+        "hires": false,
+        "run_reconall": true,
+        "t2s_coreg": false,
+        "medial_surface_nan": false,
+        "bold2t1w_dof": 9,
+        "fmap_bspline": true,
+        "force_syn": false,
+        "longitudinal": false,
+        "regressors_all_comps": false,
+        "regressors_dvars_th": 1.5,
+        "regressors_fd_th": 0.5,
+        "skull_strip_fixed_seed": false,
+        "skull_strip_template": "OASIS30ANTs",
+        "aroma_err_on_warn": false,
+        "aroma_melodic_dim": -200,
+        "sloppy": false
+    },
+    "files": [
+        {
+            "path": "/fast/work/users/wellansa_c/EPOC/BIDS_data",
+            "datatype": "bids",
+            "metadata": {}
+        },
+        {
+            "datatype": "ref",
+            "path": "/fast/work/users/wellansa_c/atlases/ENIGMA_rs_halfpipe/tpl-MNI152NLin2009cAsym_atlas-{desc}.nii.gz",
+            "suffix": "atlas",
+            "tags": {},
+            "extension": ".nii.gz",
+            "metadata": {}
+        }
+    ],
+    "settings": [
+        {
+            "ica_aroma": false,
+            "grand_mean_scaling": {
+                "mean": 10000.0
+            },
+            "bandpass_filter": {
+                "high": 0.1,
+                "low": 0.01,
+                "type": "frequency_based"
+            },
+            "confounds_removal": [
+                "(trans|rot)_[xyz]",
+                "a_comp_cor_0[0-4]"
+            ],
+            "name": "corrMatrixSetting",
+            "output_image": false
+        },
+        {
+            "ica_aroma": true,
+            "grand_mean_scaling": {
+                "mean": 10000.0
+            },
+            "bandpass_filter": {
+                "high": 0.1,
+                "low": 0.01,
+                "type": "frequency_based"
+            },
+            "name": "corrMatrixAromaSetting",
+            "output_image": false
+        },
+        {
+            "ica_aroma": false,
+            "grand_mean_scaling": {
+                "mean": 10000.0
+            },
+            "bandpass_filter": {
+                "high": 0.1,
+                "low": 0.01,
+                "type": "frequency_based"
+            },
+            "confounds_removal": [
+                "(trans|rot)_[xyz]",
+                "a_comp_cor_0[0-4]"
+            ],
+            "name": "preproc",
+            "output_image": true
+        },
+        {
+            "ica_aroma": true,
+            "grand_mean_scaling": {
+                "mean": 10000.0
+            },
+            "bandpass_filter": {
+                "high": 0.1,
+                "low": 0.01,
+                "type": "frequency_based"
+            },
+            "name": "preproc_aroma",
+            "output_image": true
+        }
+    ],
+    "features": [
+        {
+            "type": "atlas_based_connectivity",
+            "name": "corrMatrix",
+            "setting": "corrMatrixSetting",
+            "atlases": [
+                "brainnetomeCombined_dseg",
+                "power2011_dseg",
+                "schaefer2011Combined_dseg"
+            ],
+            "min_region_coverage": 0.8
+        },
+        {
+            "type": "atlas_based_connectivity",
+            "name": "corrMatrix_aroma",
+            "setting": "corrMatrixAromaSetting",
+            "atlases": [
+                "brainnetomeCombined_dseg",
+                "power2011_dseg",
+                "schaefer2011Combined_dseg"
+            ],
+            "min_region_coverage": 0.8
+        }
+    ],
+    "models": []
+}
