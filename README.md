@@ -22,7 +22,9 @@
 │   │   │   └── weighted_graph*.py                # Weighted graph analysis functions
 │   │   ├── freesurfer_scripts/                   
 │   │   └── halfpipe/                             
-│   └── 2_results/                                # Analysis and visualization
+│   └── 2_run_model/
+│       └── run_epoc_ML.ipynb                     # ML Model execution
+│   └── 3_results/                                
 │       └── p_values_plotting/                    # Statistical analysis and plotting
 └── src/        
     ├── MLpipeline/                               
