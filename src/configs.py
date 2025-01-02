@@ -7,11 +7,8 @@ from typing import Optional
 class ProjectConfig:
     # Root paths
     PROJECT_ROOT: Path = '/home/marijatochadse/1_data'
+    OUTPUT_ROOT: Path = '/home/marijatochadse/outputs'
 
-    DATA_ROOT: Path = PROJECT_ROOT / "data"
-    RAW_DATA: Path = DATA_ROOT / "raw"
-    PROCESSED_DATA: Path = DATA_ROOT / "processed"
-    MODELS_PATH: Path = PROJECT_ROOT / "models"
 
     # Model parameters
     RANDOM_SEED: int = 42
