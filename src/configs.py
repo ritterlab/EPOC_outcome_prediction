@@ -10,10 +10,4 @@ class ProjectConfig:
     OUTPUT_ROOT: Path = '/home/marijatochadse/outputs'
 
 
-    # Model parameters
-    RANDOM_SEED: int = 42
-    TEST_SIZE: float = 0.2
-
-
-
 configs = ProjectConfig()
