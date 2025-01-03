@@ -1,8 +1,4 @@
-# Introduction
-
-- What is the project
-
-# Structure, 
+# Structure
 
 ```
 ├── README.md                                     # Project documentation and overview
@@ -14,9 +10,9 @@
 │   ├── 1_input_prep/                             
 │   │   ├── EPOC_create_input_files/              
 │   │   │   ├── 1_make_demographic*.ipynb         # Create demographic data files
-│   │   │   ├── 2_make_sMRI*.ipynb                # Process structural MRI data
-│   │   │   ├── 3_make_fMRI*.ipynb                # Process functional MRI data
-│   │   │   ├── 4_make_graph*.ipynb               # Create graph features from fMRI
+│   │   │   ├── 2_make_sMRI*.ipynb                # Create structural MRI data files
+│   │   │   ├── 3_make_fMRI*.ipynb                # Create functional MRI data files
+│   │   │   ├── 4_make_graph*.ipynb               # Create graph features fMRI data files
 │   │   ├── EPOC_fMRI_graph_features/             
 │   │   │   ├── graph_features.py                 # Core graph feature calculations
 │   │   │   └── weighted_graph*.py                # Weighted graph analysis functions
